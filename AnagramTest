@@ -1,0 +1,68 @@
+import org.junit.jupiter.api.Test;
+
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AnagramTest {
+
+    var anagram = new Anagram();
+
+    @Test
+    void createAnagram_shouldReverseWords_whenInputsWords() {
+        String expected = "a1bcd efg!h";
+        String actual = anagram.createAnagram("d1cba hgf!e");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createAnagram_shouldReturnSpace_whenUserInputSpace() {
+        String expected = " ";
+        String actual = anagram.createAnagram(" ");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createAnagram_shouldReturnOneLetter_whenUserInputOneLetter() {
+        String expected = "a";
+        String actual = anagram.createAnagram("a");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createAnagram_shouldReturnFiveSameLetter_whenUserInputFiveSameLetters() {
+        String expected = "aaaaaaaa";
+        String actual = anagram.createAnagram("aaaaaaaa");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createAnagram_shouldReverseFiveLettersInLowerCase_whenUserInputFiveLetterInLowerCase() {
+        String expected = "ecaf";
+        String actual = anagram.createAnagram("face");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createAnagram_shouldReturnSixLettersInNotSameCase_whenUserInputSixLettersInNotSameCase() {
+        String expected = "АААааа";
+        String actual = anagram.createAnagram("аааААА");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createAnagram_shouldReturnCharacterInTheirPlaces_whenUserInputCharacters() {
+        String expected = "!@&?";
+        String actual = anagram.createAnagram("!@&?");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createAnagram_shouldFlipsSixWordsWhileKeepingCharacterInPlace_whenUserInputSixWords() {
+        String expected = "ecaf no ruoy ecaf morf ereh";
+        String actual = anagram.createAnagram("face on your face from here");
+        assertEquals(expected, actual);
+    }
+
+}
